@@ -78,6 +78,18 @@ jobs:
             git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
         fi
       env:
+        SUBFOLDER: luci-app-netwizard
+        REPO_ADDR: https://github.com/sirpdboy/luci-app-netwizard
+        TARGET_BRANCH: main
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
         SUBFOLDER: luci-theme-argon
         REPO_ADDR: https://github.com/jerrykuku/luci-theme-argon
         TARGET_BRANCH: master
