@@ -42,6 +42,18 @@ jobs:
             git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
         fi
       env:
+        SUBFOLDER: luci-theme-argon
+        REPO_ADDR: https://github.com/jerrykuku/luci-theme-argon
+        TARGET_BRANCH: master
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
         SUBFOLDER: luci-app-autotimeset
         REPO_ADDR: https://github.com/sirpdboy/luci-app-autotimeset
         TARGET_BRANCH: master
@@ -90,8 +102,8 @@ jobs:
             git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
         fi
       env:
-        SUBFOLDER: luci-theme-argon
-        REPO_ADDR: https://github.com/jerrykuku/luci-theme-argon
+        SUBFOLDER: netspeedtest
+        REPO_ADDR: https://github.com/sirpdboy/netspeedtest
         TARGET_BRANCH: master
 
     - name: push changes
